@@ -10,7 +10,7 @@ class categoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('Category.index', compact('Category'));
+        return view('Category.index', compact('categories'));
     }
 
     public function create()
@@ -28,7 +28,7 @@ class categoryController extends Controller
             'name' => $request->category_name
         ]);
 
-        return redirect()->route('Category.index')->with('success', );
+        return redirect()->route('Category')->with('success', );
     }
 
     public function edit(Category $category) // Route Model Binding

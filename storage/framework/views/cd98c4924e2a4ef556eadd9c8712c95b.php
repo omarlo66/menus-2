@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\menus-2\resources\views/Category/create.blade.php ENDPATH**/ ?>
