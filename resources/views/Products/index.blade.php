@@ -1,25 +1,38 @@
+<!-- resources/views/welcome.blade.php -->
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="container bg-dark text-light">
-    <h1>Products</h1>
-    <h2>Products List</h2>
-    <a href="{{route('products.create')}}">Add Product</a>
-    @foreach ($products as $product)
-    <div>
-        <h2>{{$product->product_name}}</h2>
-        <p>{{$product->price}}</p>
-        <p>{{$product->discount}}</p>
-        <p>{{$product->category_id}}</p>
-        <img src="{{asset('storage/images/'.$product->image)}}" alt="{{$product->product_name}}">
+@section('title', 'Welcome Page')
+
+@section('content')
+    <div class="container bg-dark text-light">
+        <h1 class="text-center text-4xl font-bold mt-10">Welcome to our website</h1>
+        <p class="text-center text-lg mt-5">This is a simple website built using Laravel and Tailwind CSS.</p>
+        <div class="flex justify-center mt-10">
+            <a href="{{ route('products.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View Products</a>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($products as $product)
+                        <tr>
+                            <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->discount }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td><img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->product_name }}" width="100"></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-    @endforeach
-</body>
-</html>
+@endsection
